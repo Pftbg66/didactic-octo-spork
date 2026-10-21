@@ -1,0 +1,72 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdk 36
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
+
+    defaultConfig {
+        applicationId "app.dumblaunch"
+        minSdkVersion 24
+        targetSdkVersion 36
+        versionCode 113
+        versionName "v6.9.17"
+
+        resourceConfigurations += ["en", "ar", "cs", "da", "de", "el", "es-rES", "es-rUS", "fi", "fr", "he", "hi", "hr", "hu", "in", "it", "ja", "ko", "nb", "nl", "pl", "pt-rBR", "ro", "ru-rRU", "sv", "th", "tr", "uk", "vi", "zh"]
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            applicationIdSuffix ".debug"
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
+    }
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = true
+    }
+    namespace 'app.dumblaunch'
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation libs.kotlin.stdlib
+    implementation libs.core.ktx
+    implementation libs.appcompat
+    implementation libs.recyclerview
+
+    // Android lifecycle
+    implementation libs.lifecycle.extensions
+    implementation libs.lifecycle.viewmodel.ktx
+
+    // Navigation
+    implementation libs.navigation.fragment.ktx
+
+    // Work Manager
+    implementation libs.work.runtime.ktx
+
+    //Material dependency
+    implementation libs.material
+
+    testImplementation libs.junit
+}

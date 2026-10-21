@@ -1,0 +1,150 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="o_mr1">shortEdges
+        </item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:colorEdgeEffect">@android:color/transparent</item>
+
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:windowShowWallpaper">true</item>
+        <item name="android:windowBackground">@color/offWhiteBackground</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <!--        <item name="android:enforceStatusBarContrast">false</item>-->
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
+        <!--        <item name="android:windowTranslucentStatus">false</item>-->
+        <!--        <item name="android:windowTranslucentNavigation">true</item>-->
+
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@android:color/darker_gray</item>
+        <item name="colorAccent">@color/black</item>
+
+        <item name="primaryColor">@color/black</item>
+        <item name="primaryInverseColor">@color/offWhiteBackground</item>
+        <item name="primaryTextShadowColor">@android:color/transparent</item>
+        <item name="primaryColorTrans50">@color/blackTrans50</item>
+        <item name="primaryColorTrans80">@color/blackTrans80</item>
+        <item name="primaryColorInverseTrans50">@color/blackInverseTrans50</item>
+        <item name="primaryColorInverseTrans80">@color/blackInverseTrans80</item>
+        <item name="primaryColorInverseTrans90">@color/blackInverseTrans90</item>
+        <item name="primaryShadeColor">@color/blackInverseTrans10</item>
+        <item name="primaryShadeDarkColor">@color/offWhiteBackground</item>
+        <item name="dialogShadeColor">@color/blackInverseTrans50</item>
+
+        <item name="mainFontFamily">@font/jetbrains_mono</item>
+
+        <!-- Popup menus and dialogs used by settings -->
+        <item name="popupMenuStyle">@style/PopupMenuStyle</item>
+        <item name="textAppearanceLargePopupMenu">@style/PopupMenuStyleText</item>
+        <item name="textAppearanceSmallPopupMenu">@style/PopupMenuStyleText</item>
+        <item name="alertDialogTheme">@style/AlertDialogStyle</item>
+
+    </style>
+
+    <!-- Applied over AppTheme when bold font is enabled -->
+    <style name="BoldFontOverlay">
+        <item name="mainFontFamily">@font/jetbrains_mono</item>
+    </style>
+
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="AppSearchText" parent="Widget.AppCompat.SearchView">
+        <item name="android:maxLength">200</item>
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:textColor">?attr/primaryColor</item>
+        <item name="android:editTextColor">?attr/primaryColor</item>
+        <item name="android:textColorHint">?attr/primaryColor</item>
+        <item name="android:fontFamily">?attr/mainFontFamily</item>
+        <item name="android:inputType">textCapSentences|textNoSuggestions</item>
+        <item name="android:cursorVisible">false</item>
+    </style>
+
+    <style name="TextDefault" parent="@android:style/TextAppearance.Large">
+        <item name="android:textColor">@drawable/text_colors_default</item>
+        <item name="android:textColorHint">?attr/primaryColorTrans80</item>
+        <item name="android:shadowColor">?attr/primaryTextShadowColor</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">2</item>
+        <item name="android:shadowRadius">4</item>
+    </style>
+
+    <style name="TextLarge" parent="TextDefault">
+        <item name="android:fontFamily">?attr/mainFontFamily</item>
+        <item name="android:textSize">@dimen/text_large</item>
+    </style>
+
+    <style name="TextMedium" parent="TextDefault">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextSmall" parent="TextDefault">
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
+    <style name="TextSmallBold" parent="TextSmall">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextSmallLight" parent="TextSmall">
+        <item name="android:textColor">@drawable/text_colors_light</item>
+    </style>
+
+    <!-- Popup menu anchored to a settings row -->
+    <style name="PopupMenuStyle" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@drawable/rounded_primary_gradient</item>
+        <item name="android:popupElevation">8dp</item>
+    </style>
+
+    <style name="PopupMenuStyle.NoAnimation">
+        <item name="android:popupAnimationStyle">@style/NoWindowAnimation</item>
+    </style>
+
+    <style name="PopupMenuStyleText" parent="TextAppearance.AppCompat.Widget.PopupMenu.Large">
+        <item name="android:textColor">?attr/primaryColor</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Alert dialogs: the window only; content comes from layout/dialog_base.xml -->
+    <style name="AlertDialogStyle" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/bg_dialog</item>
+        <item name="android:backgroundDimAmount">0.5</item>
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+    </style>
+
+    <style name="DialogAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
+
+    <style name="AlertDialogStyle.NoAnimation">
+        <item name="android:windowAnimationStyle">@style/NoWindowAnimation</item>
+    </style>
+
+    <!-- Applied over AppTheme on e-ink displays or when system animations are off -->
+    <style name="NoAnimationOverlay">
+        <item name="popupMenuStyle">@style/PopupMenuStyle.NoAnimation</item>
+        <item name="alertDialogTheme">@style/AlertDialogStyle.NoAnimation</item>
+    </style>
+
+    <style name="NoWindowAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowExitAnimation">@null</item>
+    </style>
+
+</resources>

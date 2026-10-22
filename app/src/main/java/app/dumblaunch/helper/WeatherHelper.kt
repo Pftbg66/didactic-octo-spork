@@ -1,6 +1,9 @@
 package app.dumblaunch.helper
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
+import android.location.LocationManager
 import android.os.Handler
 import android.os.Looper
 import app.dumblaunch.data.Prefs
@@ -10,8 +13,8 @@ import java.net.URL
 import java.net.URLEncoder
 
 /**
- * Current weather from Open-Meteo (free, no account or API key).
- * Only the city name you type is sent, no location permission is used.
+ * Current weather from Open-Meteo.
+ * Uses device location when available, and falls back to a manual city entry if needed.
  */
 object WeatherHelper {
 
@@ -20,15 +23,18 @@ object WeatherHelper {
     private val waiting = mutableListOf<() -> Unit>()
     private var running = false
 
-    /** Refreshes the cached weather if it is older than 30 minutes (or [force]). [onDone] runs on the main thread. */
     fun refresh(context: Context, force: Boolean = false, onDone: () -> Unit = {}) {
         val prefs = Prefs(context.applicationContext)
 
-        if (prefs.weatherCity.isBlank()) {
+        val hasLocationPermission = context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+            context.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+
+        if (!hasLocationPermission && prefs.weatherCity.isBlank() && prefs.weatherLat.isBlank() && prefs.weatherLon.isBlank()) {
             prefs.weatherText = ""
             onDone()
             return
         }
+
         val fresh = System.currentTimeMillis() - prefs.weatherUpdated < REFRESH_MS
         if (!force && fresh && prefs.weatherText.isNotBlank()) {
             onDone()
@@ -43,10 +49,20 @@ object WeatherHelper {
 
         Thread {
             try {
-                if (prefs.weatherLat.isBlank() || prefs.weatherLon.isBlank()) geocode(prefs)
-                if (prefs.weatherLat.isNotBlank()) fetchCurrent(prefs)
+                val coords = findLocation(context, prefs)
+                if (coords != null) {
+                    prefs.weatherLat = coords.first.toString()
+                    prefs.weatherLon = coords.second.toString()
+                    fetchCurrent(prefs)
+                } else if (prefs.weatherCity.isNotBlank()) {
+                    geocode(prefs)
+                    if (prefs.weatherLat.isNotBlank()) fetchCurrent(prefs)
+                    else prefs.weatherText = ""
+                } else {
+                    prefs.weatherText = ""
+                }
             } catch (e: Exception) {
-                e.printStackTrace() // keep showing the last known weather
+                e.printStackTrace()
             }
             val callbacks = synchronized(waiting) {
                 running = false
@@ -54,6 +70,29 @@ object WeatherHelper {
             }
             Handler(Looper.getMainLooper()).post { callbacks.forEach { it() } }
         }.start()
+    }
+
+    private fun findLocation(context: Context, prefs: Prefs): Pair<Double, Double>? {
+        val hasLocationPermission = context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+            context.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+
+        if (hasLocationPermission) {
+            val locationManager = context.getSystemService(LocationManager::class.java) as? LocationManager
+            if (locationManager != null) {
+                val knownLocations = listOfNotNull(
+                    locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER),
+                    locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+                )
+                val best = knownLocations.maxByOrNull { it.time }
+                if (best != null) return best.latitude to best.longitude
+            }
+        }
+
+        if (prefs.weatherLat.isNotBlank() && prefs.weatherLon.isNotBlank()) {
+            return prefs.weatherLat.toDouble() to prefs.weatherLon.toDouble()
+        }
+
+        return null
     }
 
     private fun get(url: String): JSONObject {
@@ -67,13 +106,12 @@ object WeatherHelper {
         }
     }
 
-    // "Brampton" or "Brampton, Ontario" / "Paris, France"
     private fun geocode(prefs: Prefs) {
         val name = prefs.weatherCity.substringBefore(',').trim()
         val hint = prefs.weatherCity.substringAfter(',', "").trim().lowercase()
         val json = get(
             "https://geocoding-api.open-meteo.com/v1/search?name=" +
-                    URLEncoder.encode(name, "UTF-8") + "&count=10&language=en&format=json"
+                URLEncoder.encode(name, "UTF-8") + "&count=10&language=en&format=json"
         )
         val results = json.optJSONArray("results") ?: return
         var best: JSONObject? = null
@@ -93,8 +131,8 @@ object WeatherHelper {
     private fun fetchCurrent(prefs: Prefs) {
         val json = get(
             "https://api.open-meteo.com/v1/forecast?latitude=${prefs.weatherLat}" +
-                    "&longitude=${prefs.weatherLon}&current=temperature_2m,weather_code" +
-                    "&temperature_unit=celsius&timezone=auto"
+                "&longitude=${prefs.weatherLon}&current=temperature_2m,weather_code" +
+                "&temperature_unit=celsius&timezone=auto"
         )
         val current = json.getJSONObject("current")
         val temp = Math.round(current.getDouble("temperature_2m"))

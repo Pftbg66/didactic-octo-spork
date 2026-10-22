@@ -218,9 +218,11 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
 
 
 
-    private fun populateWeather() {
-        binding.weatherValue.text = prefs.weatherCity.ifBlank { getString(R.string.off) }
-    }
+  private fun populateWeather() {
+    val hasLocation = prefs.weatherLat.isNotBlank() && prefs.weatherLon.isNotBlank()
+    binding.weatherValue.text = if (hasLocation) getString(R.string.location)
+    else prefs.weatherCity.ifBlank { getString(R.string.off) }
+}
 
     private fun showWeatherDialog() {
         var input: android.widget.EditText? = null

@@ -21,23 +21,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingVertical="64dp">
+            android:paddingTop="64dp"
+            android:paddingBottom="36dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                android:background="@drawable/rounded_rect_shade_color"
+                android:background="@drawable/rounded_rectangle_dark"
                 android:orientation="vertical"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="16dp">
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="14dp">
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="4dp">
+                    android:layout_marginBottom="12dp">
 
                     <TextView
                         android:id="@+id/hiddenApps"
@@ -49,36 +50,31 @@
 
                     <ImageView
                         android:id="@+id/appInfo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
                         android:layout_gravity="end|center_vertical"
-                        android:padding="4dp"
+                        android:padding="8dp"
                         android:src="@drawable/ic_info" />
                 </FrameLayout>
 
                 <TextView
                     android:id="@+id/setLauncher"
                     style="@style/TextSmall"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="6dp"
+                    android:paddingVertical="10dp"
                     android:text="@string/set_as_default_launcher" />
 
                 <TextView
                     android:id="@+id/clearRunningApps"
                     style="@style/TextSmall"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:paddingVertical="10dp"
                     android:text="@string/clear_running_apps" />
-
-
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -86,10 +82,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/rounded_rect_shade_color"
+                android:background="@drawable/rounded_rectangle_dark"
                 android:orientation="vertical"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="16dp"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="14dp"
                 tools:visibility="visible">
 
                 <TextView
@@ -97,15 +93,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="6dp"
                     android:text="@string/home_screen"
                     android:textColor="?attr/primaryColor" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         style="@style/TextSmall"
@@ -123,16 +119,16 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|bottom"
                         android:layout_marginEnd="4dp"
+                        android:background="@android:color/transparent"
+                        android:paddingHorizontal="12dp"
                         android:paddingVertical="8dp"
-                        android:paddingStart="24dp"
-                        android:paddingEnd="8dp"
                         tools:text="@string/_8" />
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         style="@style/TextSmall"
@@ -150,14 +146,15 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|bottom"
                         android:layout_marginEnd="4dp"
-                        android:padding="8dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="8dp"
                         android:text="@string/on" />
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="4dp">
 
                     <TextView
@@ -177,19 +174,17 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|bottom"
                         android:layout_marginEnd="4dp"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:paddingStart="24dp"
-                        android:paddingEnd="8dp"
+                        android:ellipsize="end"
                         android:maxLines="1"
-                        android:ellipsize="end" />
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="8dp"
+                        android:text="@string/location" />
                 </FrameLayout>
-
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         style="@style/TextSmall"
@@ -207,7 +202,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|bottom"
                         android:layout_marginEnd="4dp"
-                        android:padding="8dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="8dp"
                         android:text="@string/left" />
                 </FrameLayout>
 
@@ -215,7 +211,7 @@
                     android:id="@+id/screenTimeLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="4dp">
 
                     <TextView
@@ -234,7 +230,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|bottom"
                         android:layout_marginEnd="4dp"
-                        android:padding="8dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="8dp"
                         android:text="@string/off" />
                 </FrameLayout>
 
@@ -245,10 +242,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/rounded_rect_shade_color"
+                android:background="@drawable/rounded_rectangle_dark"
                 android:orientation="vertical"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="16dp"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="14dp"
                 tools:visibility="visible">
 
                 <TextView
@@ -256,15 +253,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="6dp"
                     android:text="@string/appearance"
                     android:textColor="?attr/primaryColor" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         style="@style/TextSmall"
@@ -283,15 +280,15 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|bottom"
                         android:layout_marginEnd="4dp"
-                        android:padding="8dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="8dp"
                         android:text="@string/on" />
                 </FrameLayout>
-
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp">
+                    android:layout_marginTop="12dp">
 
                     <TextView
                         style="@style/TextSmall"
@@ -309,15 +306,15 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|bottom"
                         android:layout_marginEnd="4dp"
-                        android:padding="8dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="8dp"
                         android:text="@string/off" />
                 </FrameLayout>
-
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp">
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         style="@style/TextSmall"
@@ -335,14 +332,15 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|bottom"
                         android:layout_marginEnd="4dp"
-                        android:padding="8dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="8dp"
                         android:text="@string/off" />
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="4dp">
 
                     <TextView
@@ -361,45 +359,15 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|bottom"
                         android:layout_marginEnd="4dp"
+                        android:paddingHorizontal="12dp"
                         android:paddingVertical="8dp"
-                        android:paddingStart="24dp"
-                        android:paddingEnd="8dp"
                         tools:text="1.0" />
                 </FrameLayout>
 
             </LinearLayout>
 
-            <!-- Gestures Section Card -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/rounded_rect_shade_color"
-                android:orientation="vertical"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="16dp">
-
-                <TextView
-                    style="@style/TextLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/gestures"
-                    android:textColor="?attr/primaryColor" />
-
-                <!-- Swipe Left Option -->
-
-                <!-- Swipe Right Option -->
-
-                <!-- Double Tap to Lock Option -->
-
-            </LinearLayout> <!-- Closes Gestures Card LinearLayout -->
-
-        </LinearLayout> <!-- Closes the main vertical LinearLayout inside the ScrollView -->
+        </LinearLayout>
 
     </ScrollView>
 
-</FrameLayout> <!-- Closes root FrameLayout -->
+</FrameLayout>

@@ -6,13 +6,15 @@
 <uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>
 <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:ignore="PackageVisibilityPolicy,QueryAllPackagesPermission"/>
 <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES"/>
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-  <!-- Used only for downloading wallpapers -->
-<!-- Used only for opening alarm app -->
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+<uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage"/>
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32"/>
+<!--  Used only for downloading wallpapers  -->
+<!--  Used only for opening alarm app  -->
 <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
 <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions"/>
-<!-- Used for Private Space support on Android 15+ -->
+<!--  Used for Private Space support on Android 15+  -->
 <uses-permission android:name="android.permission.ACCESS_HIDDEN_PROFILES"/>
 <application android:allowBackup="true" android:dataExtractionRules="@xml/data_extraction_rules" android:fullBackupContent="@xml/backup_rules" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:localeConfig="@xml/locales_config" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/AppTheme" tools:ignore="UnusedAttribute">
 <activity android:name=".MainActivity" android:configChanges="uiMode" android:excludeFromRecents="true" android:exported="true" android:launchMode="singleTask" android:taskAffinity="" android:windowSoftInputMode="stateAlwaysHidden">
@@ -47,6 +49,11 @@
 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
 </intent-filter>
 </receiver>
+<service android:name=".listener.NotificationDotService" android:exported="true" android:label="@string/app_name" android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+<intent-filter>
+<action android:name="android.service.notification.NotificationListenerService"/>
+</intent-filter>
+</service>
 <service android:name=".helper.MyAccessibilityService" android:exported="false" android:label="@string/app_name" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" android:process=":serviceProcess">
 <meta-data android:name="android.accessibilityservice" android:resource="@xml/accessibility_service_config"/>
 <intent-filter>

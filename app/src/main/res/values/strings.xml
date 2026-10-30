@@ -203,5 +203,5 @@
   <string name="files_empty">empty folder</string>
   <string name="files_system">or open the system files app</string>
   <string name="files_no_app">no app can open this file</string>
-  <string name="files_cant_open">couldn't open that</string>
+  <string name="files_cant_open">couldn\'t open that</string>
 </resources>

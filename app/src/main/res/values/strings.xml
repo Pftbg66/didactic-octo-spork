@@ -93,14 +93,14 @@
     <!--         \n\nIf you have a moment to spare, could you please share dumblaunch with others? dumblaunch needs people. More importantly, people need dumblaunch.</string>-->
     <string name="keyboard_message">Hi, keyboard is the fastest way to find and launch apps in dumblaunch. Can we request you to keep this On for a few more days and then decide?
         \n\nThe choice is always yours.</string>
-    <string name="digital_wellbeing_message">If you want to set time limits for certain apps, Digital Wellbeing feature of Android can help you do it.           Please search for Digital Wellbeing in your phone settings and enable it.</string>
+    <string name="digital_wellbeing_message">If you want to set time limits for certain apps, Digital Wellbeing feature of Android can help you do it.           Please search for Digital Wellbeing[...]</string>
     <string name="app_usage_message">To show/hide your screen time on the home screen, please allow or disallow the app usage permission.
         \n\nNote: No app usage data is collected. Everything is processed on your device.</string>
     <string name="pro_message">dumblaunch also has a pro version called Pro Launcher. It has extra features like weather, widgets, fonts, folders, AMOLED wallpapers, and so on.
         \n\nIt\'s also the best way to support the developers of dumblaunch. Check it out!</string>
     <string name="wallpaper_message">dumblaunch offers beautiful new wallpapers daily. Give your homescreen a fresh new look every day, for free!
         \n\nWant to try it?</string>
-    <string name="accessibility_service_description">The accessibility permission is required to enable the gesture - double tap to lock . Any data acquired by dumblaunch via this service will not leave your device.</string>
+    <string name="accessibility_service_description">The accessibility permission is required to enable the gesture - double tap to lock . Any data acquired by dumblaunch via this service will no[...]</string>
     <string name="support_dumblaunch_for_free">Support dumblaunch for free by using our Amazon affiliate link.</string>
     <string name="support_dumblaunch_message">Every time you buy something using our link, we get a small commission. Please save the link and use it whenever you shop online.\nThank you!</string>
     <string name="open">Open link</string>
@@ -202,5 +202,5 @@
   <string name="files_empty">empty folder</string>
   <string name="files_system">or open the system files app</string>
   <string name="files_no_app">no app can open this file</string>
-  <string name="files_cant_open">couldn't open that</string>
+  <string name="files_cant_open">could not open that</string>
 </resources>
